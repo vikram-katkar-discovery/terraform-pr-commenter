@@ -20,4 +20,4 @@ runs:
       env:
         ACTION_TYPE: "plan"
       shell: bash
-      run: ./tf-pr-commenter.sh
+      run: $GITHUB_ACTION_PATH/tf-pr-commenter.sh
