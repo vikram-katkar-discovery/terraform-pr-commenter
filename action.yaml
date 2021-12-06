@@ -1,0 +1,23 @@
+name: "Terraform Plan Commenter"
+description: "Comment the Terraform pla output on PR."
+
+# pass following inputs as environment variables
+# due to limitation on number of bytes can be passed as input (around 16Mb)
+# https://github.com/actions/virtual-environments/issues/3257
+# https://github.com/robburger/terraform-pr-commenter/issues/6
+
+# GITHUB_EVENT_PATH
+# GITHUB_REPOSITORY
+# GITHUB_RUN_ID
+# ACTION_OUTPUT
+# ACTION_EXITCODE
+
+runs:
+  using: "composite"
+  steps:
+    # Post plan as a PR comment
+    - name: Comment TF Plan on PR
+      env:
+        ACTION_TYPE: "plan"
+      shell: bash
+      run: ./tf-pr-commenter.sh
